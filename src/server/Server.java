@@ -11,7 +11,7 @@ public class Server {
 
     public static final String NEW_LINE_SEPARATOR = "\n";
 
-    private static final String FILE_HEADER = "Protocolo,IP,latitud,longitud,altitud,velocidad";
+    private static final String FILE_HEADER = "Protocolo,IP,Id,Latitud,Longitud,Altitud,Velocidad";
 
     private static final String FILE_DIR = "./data/data.csv";
 
@@ -37,12 +37,10 @@ public class Server {
         udp.start();
         while (ejecutar) {
             new TCPServerThread(tcp.accept()).start();
-            if(in.readLine().equals("STOP")) {
-                ejecutar = false;
-            }
         }
         udp.stopServer();
         fileWriter.flush();
         fileWriter.close();
+        System.exit(-1);
     }
 }

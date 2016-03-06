@@ -10,8 +10,6 @@ public class TCPServerThread extends Thread{
 
     private Socket clientSocket = null;
 
-    private int id;
-
     public TCPServerThread(Socket pSocket) {
         clientSocket = pSocket;
     }
@@ -32,7 +30,7 @@ public class TCPServerThread extends Thread{
             }
             in=reader.readLine();
             while(!in.equals("STOP")){
-                System.out.println("TCP,"+ip+","+in);
+                System.out.println("TCP,"+in);
                 Server.fileWriter.append("TCP,"+ip+","+in);
                 Server.fileWriter.append(Server.NEW_LINE_SEPARATOR);
                 in=reader.readLine();
